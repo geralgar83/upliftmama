@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuidan, trabajan, sostienen… ¿y su bienestar?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F3F0; 
+            color: #4A4A4A;
+        }
+        .chart-container {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px; /* Default height for mobile */
+            width: 100%;
+            max-width: 500px;
+        }
+        @media (min-width: 640px) { /* sm breakpoint */
+            .chart-container {
+                height: 300px;
+            }
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .icon-unicode {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mx-auto p-4 sm:p-8 max-w-5xl">
+        <header class="w-full text-center mx-auto mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#7A5C58] leading-tight mb-4">
+                Cuidan, trabajan, sostienen… ¿y su bienestar?
+            </h1>
+            <p class="text-lg md:text-xl text-[#6B7280]">
+                Una infografía interactiva sobre la realidad de las mujeres en México y los caminos hacia el bienestar.
+            </p>
+        </header>
+
+        <main class="space-y-20">
+            
+            <section id="peso-invisible" class="text-center">
+                <div class="bg-white rounded-2xl shadow-lg p-8 sm:p-12">
+                    <h2 class="text-3xl font-bold text-[#A87676] mb-4">El Peso Invisible que Cargamos</h2>
+                    <p class="text-lg mb-8 leading-relaxed max-w-3xl mx-auto">
+                        En México, las mujeres navegamos un complejo panorama donde el trabajo formal se superpone con una extensa "segunda jornada" en el hogar. Esta carga invisible, a menudo no reconocida, es una realidad cotidiana que nos impacta a todas, trascendiendo el estatus laboral.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <div class="icon-unicode text-[#A87676] mb-3">🧠</div>
+                            <h3 class="text-xl font-bold text-[#7A5C58] mb-2">Carga Mental</h3>
+                            <p class="text-gray-600">El incesante trabajo de planificar, organizar y anticipar cada necesidad del hogar. Es la "lista invisible" que nunca termina y genera un estado de alerta constante.</p>
+                        </div>
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <div class="icon-unicode text-[#A87676] mb-3">💪</div>
+                            <h3 class="text-xl font-bold text-[#7A5C58] mb-2">Carga Física</h3>
+                            <p class="text-gray-600">Las "jornadas dobles o triples" que agotan, combinando el trabajo remunerado con el cuidado del hogar, los hijos y, a menudo, de adultos mayores.</p>
+                        </div>
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <div class="icon-unicode text-[#A87676] mb-3">❤️</div>
+                            <h3 class="text-xl font-bold text-[#7A5C58] mb-2">Carga Emocional</h3>
+                            <p class="text-gray-600">Actuar como el pilar emocional de la familia, mediando conflictos y dando consuelo, frecuentemente sin un espacio propio para nuestras propias emociones.</p>
+                        </div>
+                    </div>
+                    <p class="text-2xl font-bold text-[#7A5C58] italic mt-10">
+                        "Cuando todas las piezas giran gracias a ti, ¿qué pasa cuando tú te detienes?"
+                    </p>
+                    <p class="text-md text-gray-600 mt-4 max-w-3xl mx-auto">
+                        Esta carga desproporcionada no es casualidad; está arraigada en lo que la sociedad espera de nosotras. Desde pequeñas, se nos prepara para cuidar a otros, perpetuando un modelo que se hereda. La expectativa de perfección en cada rol aumenta el estrés y nos hace sentir que cualquier dificultad es un fallo personal.
+                    </p>
+                </div>
+            </section>
+
+            <section id="numeros" class="text-center">
+                <div class="bg-white rounded-2xl shadow-lg p-8 sm:p-12">
+                    <h2 class="text-3xl font-bold text-[#A87676] mb-4">Los Números Hablan: La Realidad en Datos</h2>
+                    <p class="text-lg mb-12 leading-relaxed max-w-3xl mx-auto">
+                        La experiencia personal de esta carga invisible se sustenta en datos objetivos, revelando un problema social sistémico en lugar de deficiencias individuales.
+                    </p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <h3 class="text-2xl font-semibold text-[#7A5C58] mb-4">Participación Laboral de la Mujer</h3>
+                            <div class="chart-container"><canvas id="participationChart"></canvas></div>
+                            <p class="text-md text-gray-600 mt-6">Solo el 45.6% de las mujeres mayores de 15 años son económicamente activas. Un significativo 7 de cada 10 de ellas son madres, lo que resalta la dualidad inherente de sus roles.</p>
+                        </div>
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <h3 class="text-2xl font-semibold text-[#7A5C58] mb-4">Carga de Trabajo Semanal No Remunerado</h3>
+                            <div class="chart-container"><canvas id="workloadChart"></canvas></div>
+                            <p class="text-md text-gray-600 mt-6">Las mujeres dedican 30.8 horas a la semana al trabajo doméstico no remunerado, 19.2 horas más que los hombres. Esto incluye 9.1 horas más en preparación de alimentos y 6.9 horas más en cuidado activo.</p>
+                        </div>
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                             <h3 class="text-2xl font-semibold text-[#7A5C58] mb-4">Valor del Trabajo de Cuidados</h3>
+                             <p class="text-6xl font-extrabold text-[#A87676]">24.3%</p>
+                             <p class="text-xl font-semibold text-[#7A5C58] mt-2">del PIB Nacional</p>
+                             <p class="text-md text-gray-600 mt-4">El trabajo no remunerado, realizado mayormente por mujeres, equivale a 7.2 billones de pesos anuales, aportando casi tres cuartas partes del valor económico total de las actividades de cuidado.</p>
+                        </div>
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <h3 class="text-2xl font-semibold text-[#7A5C58] mb-4">Culpa y Desconexión</h3>
+                            <p class="text-6xl font-extrabold text-[#A87676]">70%</p>
+                            <p class="text-xl font-semibold text-[#7A5C58] mt-2">siente culpa al priorizarse</p>
+                            <p class="text-md text-gray-600 mt-4">El 70% de las mujeres trabajadoras sienten culpa al priorizar su carrera o bienestar. Además, el porcentaje de mujeres sin acceso a servicios de salud aumentó del 16% en 2018 al 25% en 2022.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="consecuencias" class="text-center">
+                <div class="bg-white rounded-2xl shadow-lg p-8 sm:p-12">
+                    <h2 class="text-3xl font-bold text-[#A87676] mb-4">Las Consecuencias en Nuestro Bienestar</h2>
+                    <p class="text-lg mb-12 leading-relaxed max-w-3xl mx-auto">
+                        Esta sobrecarga sistémica tiene un costo real en nuestra salud física y mental. No es un fracaso personal, sino una "saturación estructural" que se manifiesta de diversas maneras.
+                    </p>
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+                        <div class="lg:col-span-2 bg-[#F7F3F0] p-6 rounded-xl text-left h-full">
+                            <h3 class="text-2xl font-semibold text-[#7A5C58] mb-4">Impacto en la Salud Física</h3>
+                             <ul class="space-y-4 text-lg text-gray-600">
+                                <li class="flex items-start"><span class="text-[#A87676] mr-3 mt-1">●</span><div><span class="font-bold text-[#7A5C58]">Dolor Crónico:</span> Más del 80% de los diagnósticos de fibromialgia son en mujeres mayores de 30 años.</div></li>
+                                <li class="flex items-start"><span class="text-[#A87676] mr-3 mt-1">●</span><div><span class="font-bold text-[#7A5C58]">Trastornos del Sueño:</span> El 48.8% de las mujeres mayores de 53 años reportan problemas para conciliar el sueño. Se estima que las mujeres necesitan 30 minutos más de sueño que los hombres.</div></li>
+                                <li class="flex items-start"><span class="text-[#A87676] mr-3 mt-1">●</span><div><span class="font-bold text-[#7A5C58]">Problemas Digestivos:</span> El Síndrome de Intestino Irritable (SII) es el doble de común en mujeres que en hombres.</div></li>
+                                <li class="flex items-start"><span class="text-[#A87676] mr-3 mt-1">●</span><div><span class="font-bold text-[#7A5C58]">Desgaste Físico:</span> Cansancio que no se quita con nada e irritabilidad.</div></li>
+                            </ul>
+                        </div>
+                        <div class="lg:col-span-3 bg-[#F7F3F0] p-6 rounded-xl h-full">
+                            <h3 class="text-2xl font-semibold text-[#7A5C58] mb-4">Prevalencia de Trastornos de Salud Mental</h3>
+                            <div class="chart-container"><canvas id="mentalHealthChart"></canvas></div>
+                             <p class="text-md text-gray-600 mt-6">Las mujeres somos las más afectadas por ansiedad (52.8%) y depresión (25.1%) en México. Un 26% sufre burnout por la doble carga de trabajo, y la violencia es motivo de terapia en el 45.4% de los casos.</p>
+                        </div>
+
+                        <div class="lg:col-span-5 bg-[#F7F3F0] p-6 rounded-xl text-left mt-8">
+                            <h3 class="text-2xl font-semibold text-[#7A5C58] mb-4">El Ciclo Pernicioso de Agotamiento</h3>
+                            <p class="text-lg mb-6 text-gray-600">
+                                La falta de sueño y el burnout se retroalimentan, creando un ciclo que socava nuestra capacidad de recuperación.
+                            </p>
+                            <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8 text-center">
+                                <div class="flex flex-col items-center">
+                                    <div class="bg-[#E1C78F] text-[#7A5C58] p-4 rounded-full shadow-md icon-unicode">😴</div>
+                                    <p class="mt-2 font-bold text-[#7A5C58]">Falta de Sueño</p>
+                                    <p class="text-sm text-gray-600">Aumenta el estrés y reduce la capacidad de afrontamiento.</p>
+                                </div>
+                                <div class="text-[#A87676] text-4xl md:text-5xl">➡️</div>
+                                <div class="flex flex-col items-center">
+                                    <div class="bg-[#A87676] text-white p-4 rounded-full shadow-md icon-unicode">🔥</div>
+                                    <p class="mt-2 font-bold text-[#7A5C58]">Burnout</p>
+                                    <p class="text-sm text-gray-600">Agotamiento profundo, distancia mental, ineficacia.</p>
+                                </div>
+                                <div class="text-[#A87676] text-4xl md:text-5xl">➡️</div>
+                                <div class="flex flex-col items-center">
+                                    <div class="bg-[#E1C78F] text-[#7A5C58] p-4 rounded-full shadow-md icon-unicode">🔄</div>
+                                    <p class="mt-2 font-bold text-[#7A5C58]">Interrupción del Sueño</p>
+                                    <p class="text-sm text-gray-600">El burnout empeora el sueño, intensificando el ciclo.</p>
+                                </div>
+                            </div>
+                            <p class="text-md text-gray-600 mt-6">
+                                La presión social para estar "bien" y la culpa por priorizar el bienestar impiden buscar el descanso o la ayuda necesaria, exacerbando los problemas de salud mental.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="soluciones" class="text-center">
+                <div class="bg-white rounded-2xl shadow-lg p-8 sm:p-12">
+                    <h2 class="text-3xl font-bold text-[#A87676] mb-4">¿Y Ahora Qué? Soluciones Reales para Mujeres Reales</h2>
+                    <p class="text-lg mb-12 leading-relaxed max-w-3xl mx-auto">
+                        No necesitamos otra rutina imposible. Necesitamos espacios de pausa, herramientas reales y acompañamiento. El autocuidado no es un pendiente, ¡es una forma de volver a ti!
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <h3 class="text-xl font-bold text-[#7A5C58] mb-2">Replantear el Autocuidado</h3>
+                            <p class="text-gray-600">Pasar de la exigencia a la amabilidad. El autocuidado es un derecho, no un lujo, y requiere una estructura social que lo permita.</p>
+                            <p class="text-sm text-gray-500 mt-3">El "Derecho al Cuidado" ya está reconocido en la Constitución de la CDMX, buscando corresponsabilidad y eliminar barreras para gestionar nuestro tiempo y participar equitativamente.</p>
+                        </div>
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <h3 class="text-xl font-bold text-[#7A5C58] mb-2">Microprácticas de Bienestar</h3>
+                            <p class="text-gray-600">5 minutos para ti que sí hacen la diferencia: respiración consciente, movimiento suave, escritura de pensamientos o pausas conscientes. Recursos digitales pueden ser un gran apoyo.</p>
+                        </div>
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <h3 class="text-xl font-bold text-[#7A5C58] mb-2">Círculos de Apoyo</h3>
+                            <p class="text-gray-600">El poder de la tribu. Espacios seguros para hablar sin juicio, ser escuchada y combatir el aislamiento y la culpa. Iniciativas como la "Lavandería Popular Lavamos a Hacer" también contribuyen.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="activa" class="text-center">
+                <div class="bg-[#7A5C58] text-white rounded-2xl shadow-xl p-8 sm:p-12">
+                    <h2 class="text-3xl font-bold mb-4">Activa: Bienestar que Nace Desde Adentro</h2>
+                    <p class="text-lg mb-8 max-w-3xl mx-auto">
+                        Activa es nuestro programa experiencial de 8 semanas, diseñado para mujeres que, como tú, cuidan, trabajan y muchas veces se olvidan de sí mismas. Es una experiencia guiada que te ofrece soluciones reales y tangibles.
+                    </p>
+                    <div class="bg-white text-gray-800 rounded-xl p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="text-center">
+                            <div class="icon-unicode text-[#A87676] mb-2">🤸‍♀️</div>
+                            <h4 class="font-bold text-lg">Movimiento Consciente</h4>
+                        </div>
+                         <div class="text-center">
+                            <div class="icon-unicode text-[#A87676] mb-2">✍️</div>
+                            <h4 class="font-bold text-lg">Herramientas para Carga Mental</h4>
+                        </div>
+                         <div class="text-center">
+                            <div class="icon-unicode text-[#A87676] mb-2">🤝</div>
+                            <h4 class="font-bold text-lg">Acompañamiento Grupal</h4>
+                        </div>
+                         <div class="text-center">
+                            <div class="icon-unicode text-[#A87676] mb-2">✨</div>
+                            <h4 class="font-bold text-lg">Reconexión con tu Energía</h4>
+                        </div>
+                    </div>
+                    <div class="mt-10 text-left max-w-3xl mx-auto">
+                        <h3 class="text-2xl font-bold mb-4">¿Cómo funciona Activa?</h3>
+                        <div class="overflow-x-auto mb-6">
+                            <table class="min-w-full bg-white text-gray-800 rounded-lg shadow">
+                                <thead>
+                                    <tr class="bg-[#E1C78F] text-[#7A5C58]">
+                                        <th class="py-2 px-4 text-left">Elemento</th>
+                                        <th class="py-2 px-4 text-left">Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="py-2 px-4 border-b border-gray-200">Duración</td><td class="py-2 px-4 border-b border-gray-200">8 semanas</td></tr>
+                                    <tr><td class="py-2 px-4 border-b border-gray-200">Modalidad</td><td class="py-2 px-4 border-b border-gray-200">Híbrido (online + sesiones presenciales)</td></tr>
+                                    <tr><td class="py-2 px-4 border-b border-gray-200">Frecuencia</td><td class="py-2 px-4 border-b border-gray-200">1 sesión semanal (90 min aprox.)</td></tr>
+                                    <tr><td class="py-2 px-4 border-b border-gray-200">Grupo</td><td class="py-2 px-4 border-b border-gray-200">Cerrado y de confianza</td></tr>
+                                    <tr><td class="py-2 px-4">Formato</td><td class="py-2 px-4">Talleres dinámicos + actividades prácticas + comunidad</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">¿Qué incluye cada cohorte?</h3>
+                        <ul class="list-none space-y-2 text-lg">
+                            <li class="flex items-start"><span class="text-[#E1C78F] mr-2 text-2xl">●</span><div>6 talleres experienciales (cuerpo, mente, emociones, carrera, familia).</div></li>
+                            <li class="flex items-start"><span class="text-[#E1C78F] mr-2 text-2xl">●</span><div>2 círculos de conexión (inicio y cierre).</div></li>
+                            <li class="flex items-start"><span class="text-[#E1C78F] mr-2 text-2xl">●</span><div>Guías prácticas y recursos descargables.</div></li>
+                            <li class="flex items-start"><span class="text-[#E1C78F] mr-2 text-2xl">●</span><div>Acompañamiento grupal con facilitadoras expertas.</div></li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="mt-10 inline-block bg-[#E1C78F] hover:bg-opacity-90 text-[#7A5C58] font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
+                        Tu Momento es Ahora: ¡Súmate a Activa!
+                    </a>
+                </div>
+            </section>
+
+            <section id="uplift-mama-comunidad" class="text-center">
+                <div class="bg-white rounded-2xl shadow-lg p-8 sm:p-12">
+                    <h2 class="text-3xl font-bold text-[#A87676] mb-4">Uplift Mama: Tu Comunidad que Sostiene</h2>
+                    <p class="text-lg mb-12 leading-relaxed max-w-3xl mx-auto">
+                        Más allá de Activa, somos Uplift Mama, ¡tu tribu, tu red de apoyo! Aquí no creemos en la perfección. ¡Creemos en la fuerza de la tribu, en el permiso de soltar y en el poder de compartir!
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <h3 class="text-2xl font-semibold text-[#7A5C58] mb-4">Lo que encuentras aquí:</h3>
+                            <ul class="list-none space-y-3 text-lg text-left">
+                                <li class="flex items-start"><span class="text-[#A87676] mr-2 text-2xl">●</span><div>Espacios seguros: Para hablar abiertamente, ser vulnerable y sentirte validada.</div></li>
+                                <li class="flex items-start"><span class="text-[#A87676] mr-2 text-2xl">●</span><div>Encuentros transformadores: Momentos para crecer y conectar.</div></li>
+                                <li class="flex items-start"><span class="text-[#A87676] mr-2 text-2xl">●</span><div>Talleres y herramientas reales: Estrategias prácticas para tu bienestar.</div></li>
+                                <li class="flex items-start"><span class="text-[#A87676] mr-2 text-2xl">●</span><div>Una red de mujeres que te sostienen mientras sostienes: Un sistema de apoyo recíproco donde nos elevamos mutuamente.</div></li>
+                            </ul>
+                        </div>
+                        <div class="bg-[#F7F3F0] p-6 rounded-xl">
+                            <h3 class="text-2xl font-semibold text-[#7A5C58] mb-4">Beneficios Clave</h3>
+                            <ul class="list-none space-y-3 text-lg text-left">
+                                <li class="flex items-start"><span class="text-[#A87676] mr-2 text-2xl">●</span><div><span class="font-bold text-[#7A5C58]">Para Mujeres Independientes:</span> Romper el ciclo de culpa y cansancio crónico, conectar con otras mujeres, aprender herramientas prácticas y construir un plan de bienestar sostenible.</div></li>
+                                <li class="flex items-start"><span class="text-[#A87676] mr-2 text-2xl">●</span><div><span class="font-bold text-[#7A5C58]">Para Empresas:</span> Mejora el compromiso emocional de colaboradoras, refuerza la cultura de bienestar y diversidad, reduce el estrés y el riesgo de burnout.</div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tu-momento" class="text-center">
+                <div class="bg-[#7A5C58] text-white rounded-2xl shadow-xl p-8 sm:p-12">
+                    <h2 class="text-3xl font-bold mb-4">Tu Momento es Ahora: ¡Súmate a Activa!</h2>
+                    <p class="text-lg mb-8 max-w-3xl mx-auto">
+                        Querida amiga, tu bienestar no es un lujo, ¡es una necesidad! No esperes a que el cansancio te gane o a que algo se rompa para darte permiso de atenderte. Activa está diseñado para ayudarte a regresar a ti, paso a paso, sin culpa y con mucho amor.
+                    </p>
+                    <a href="#contacto" class="inline-block bg-[#E1C78F] hover:bg-opacity-90 text-[#7A5C58] font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
+                        ¡Quiero unirme a Activa!
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer id="contacto" class="w-full max-w-4xl text-center mx-auto mt-20 text-gray-500 text-sm">
+            <p>© 2025 Uplift Mama. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: '#4A4A4A', font: { size: 14 } } },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        bodyFont: { size: 14 },
+                        titleFont: { size: 16 }
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: { color: '#4A4A4A' },
+                        grid: { color: '#E5E7EB' }
+                    },
+                    x: {
+                        ticks: { color: '#4A4A4A' },
+                        grid: { color: '#E5E7EB' }
+                    }
+                }
+            };
+            
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (label.length <= maxLength) return label;
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxLength && currentLine !== '') {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const participationCtx = document.getElementById('participationChart').getContext('2d');
+            new Chart(participationCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Económicamente Activas', 'No Activas'],
+                    datasets: [{
+                        label: 'Participación Laboral',
+                        data: [45.6, 54.4],
+                        backgroundColor: ['#A87676', '#E1C78F'],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 4
+                    }]
+                },
+                options: { ...commonOptions, cutout: '60%' }
+            });
+
+            const workloadCtx = document.getElementById('workloadChart').getContext('2d');
+            new Chart(workloadCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mujeres', 'Hombres'],
+                    datasets: [
+                        {
+                            label: 'Horas No Remuneradas / Semana',
+                            data: [30.8, 11.6],
+                            backgroundColor: ['#A87676', '#E1C78F'],
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Horas por Semana', color: '#4A4A4A' } },
+                        x: { display: false }
+                    }
+                }
+            });
+            
+            const mentalLoadCtx = document.getElementById('mentalLoadChart');
+            if (mentalLoadCtx) {
+                new Chart(mentalLoadCtx.getContext('2d'), {
+                    type: 'pie',
+                    data: {
+                        labels: ['Gestionan rutinas del hogar (82%)', 'Sienten culpa al priorizarse (70%)'],
+                        datasets: [{
+                            data: [82, 70],
+                            backgroundColor: ['#A87676', '#E1C78F'],
+                            borderColor: '#FFFFFF',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        ...commonOptions,
+                        plugins: {
+                             ...commonOptions.plugins,
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback,
+                                    label: (context) => `${context.label.split('(')[0].trim()}: ${context.parsed}%`
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const mentalHealthCtx = document.getElementById('mentalHealthChart').getContext('2d');
+            const originalLabels = ['Ansiedad', 'Depresión', 'Burnout por Doble Carga', 'Problemas de Sueño (>53 años)', 'Violencia (motivo de terapia)', 'Fibromialgia (>30 años)', 'SII'];
+            const wrappedLabels = originalLabels.map(wrapLabel);
+            new Chart(mentalHealthCtx, {
+                type: 'bar',
+                data: {
+                    labels: wrappedLabels,
+                    datasets: [{
+                        label: '% de Mujeres Afectadas',
+                        data: [52.8, 25.1, 26, 48.8, 45.4, 80, 66], 
+                        backgroundColor: '#A87676',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: (context) => ` ${context.dataset.label}: ${context.formattedValue}%`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { beginAtZero: true, max: 100, title: { display: true, text: 'Porcentaje (%)', color: '#4A4A4A' } },
+                        y: { }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
